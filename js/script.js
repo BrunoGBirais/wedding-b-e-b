@@ -154,13 +154,13 @@ function removeFromCart(index) {
 
 function updateCartUI() {
     const list = document.getElementById('cart-items-list');
-    
+    const btnVoltar = document.querySelector('.btn-voltar-pix');
+    if (btnVoltar) btnVoltar.style.display = 'none';
+
     if (cart.length === 0) {
         document.getElementById('cart-status-text').innerText = '🛒 Carrinho vazio';
         list.innerHTML = '<p style="text-align:center; color:#888;">Seu carrinho está vazio.</p>';
         document.getElementById('cart-total-box').style.display = 'none';
-        document.getElementById('btn-checkout').style.display = 'none';
-        document.getElementById('pix-instructions').style.display = 'none';
         return;
     }
 
@@ -184,6 +184,7 @@ function updateCartUI() {
     document.getElementById('cart-total-value').innerText = total.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
     document.getElementById('cart-total-box').style.display = 'block';
     document.getElementById('btn-checkout').style.display = 'block';
+    document.getElementById('btn-whatsapp').style.display = 'block';
     document.getElementById('pix-instructions').style.display = 'none';
 }
 
@@ -198,7 +199,36 @@ function closeCart() {
 
 function checkoutPix() {
     document.getElementById('btn-checkout').style.display = 'none';
+    document.getElementById('btn-whatsapp').style.display = 'none';
     document.getElementById('pix-instructions').style.display = 'block';
+    
+    // Mostra o botão de voltar de forma segura
+    const btnVoltar = document.querySelector('.btn-voltar-pix');
+    if (btnVoltar) btnVoltar.style.display = 'inline-block';
+}
+
+function voltarParaCarrinho() {
+    document.getElementById('pix-instructions').style.display = 'none';
+    
+    // Esconde o botão de voltar de forma segura sem causar erro
+    const btnVoltar = document.querySelector('.btn-voltar-pix');
+    if (btnVoltar) btnVoltar.style.display = 'none';
+    
+    // Como não há mais erros acima, o código chega aqui e mostra os botões!
+    document.getElementById('btn-checkout').style.display = 'block';
+    document.getElementById('btn-whatsapp').style.display = 'block';
+}
+
+function enviarComprovanteWhatsApp() {
+    const numeroWhatsApp = "5511966688598";
+    
+    const nomesPresentes = cart.map(item => item.name).join(", ");
+    
+    const valorTotal = document.getElementById('cart-total-value').innerText;
+    
+    const mensagem = encodeURIComponent(`Olá Bianca e Bruno! 🤍\n\nAcabei de escolher os seguintes presentes no vosso site:\n🎁 *${nomesPresentes}*\n\nValor total: R$ ${valorTotal}\n\nSegue em anexo o meu comprovativo/mensagem:`);
+    
+    window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagem}`, '_blank');
 }
 
 function confirmarPresenca() {
@@ -209,8 +239,12 @@ function confirmarPresenca() {
         
         window.open(urlGoogleForms, '_blank');
     } else {
-        alert("Por favor, preencha o seu nome no campo antes de clicar.");
+        document.getElementById('popup-rsvp-alerta').style.display = 'flex';
     }
+}
+
+function fecharRsvpAlerta() {
+    document.getElementById('popup-rsvp-alerta').style.display = 'none';
 }
 
 function toggleMenu() {
