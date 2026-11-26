@@ -1,28 +1,9 @@
-// Lista de presentes da Amazon, com reserva via Supabase.
-// A chave publicável é pública por design; a segurança está nas regras do banco (RLS + função reservar_presente).
-const SUPABASE_URL = "https://kbicepfblkizuudboknz.supabase.co";
-const SUPABASE_KEY = "sb_publishable_pET_61Yx1MI2IMub91htyA_8kLGW2Sa";
+// Lista de presentes da Amazon, com reserva via Supabase (usa js/supabase-config.js).
 const AMAZON_LISTA_URL = "https://www.amazon.com.br/hz/wishlist/ls/22PKCUWC4NWXW";
 const INTERVALO_ATUALIZACAO_MS = 30000;
 
 let presentesAmazon = [];
 let presenteSelecionado = null;
-
-async function supabaseFetch(path, options = {}) {
-    const resp = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
-        ...options,
-        headers: {
-            apikey: SUPABASE_KEY,
-            "Content-Type": "application/json",
-            ...(options.headers || {})
-        }
-    });
-    if (!resp.ok) {
-        const erro = await resp.json().catch(() => ({}));
-        throw new Error(erro.message || `Erro ${resp.status}`);
-    }
-    return resp.json();
-}
 
 async function carregarPresentesAmazon() {
     const container = document.getElementById("amazon-gifts-container");
@@ -30,7 +11,7 @@ async function carregarPresentesAmazon() {
 
     try {
         presentesAmazon = await supabaseFetch(
-            "presentes?select=id,nome,preco,link_amazon,imagem,reservado&order=reservado.asc,id.asc"
+            "presentes?select=id,nome,preco,link_amazon,imagem,reservado&tipo=eq.amazon&order=reservado.asc,id.asc"
         );
         renderPresentesAmazon();
     } catch (e) {
@@ -79,9 +60,7 @@ function renderPresentesAmazon() {
 
         const preco = document.createElement("div");
         preco.className = "price";
-        preco.textContent = p.preco != null
-            ? "R$ " + Number(p.preco).toLocaleString("pt-BR", { minimumFractionDigits: 2 })
-            : "Ver preço na Amazon";
+        preco.textContent = formatarPreco(p.preco);
 
         card.append(imgBox, nome, preco);
 

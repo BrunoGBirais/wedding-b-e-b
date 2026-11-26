@@ -26,8 +26,8 @@
                 <li><a href="#local" onclick="closeMenu()">Local</a></li>
                 <li><a href="cronograma.html">Cronograma</a></li>
                 <li><a href="#casal" onclick="closeMenu()">O Casal</a></li>
-                <li><a href="#presentes" onclick="closeMenu()">Lista de Presentes</a></li>
                 <li><a href="#presenca" onclick="closeMenu()">Presença</a></li>
+                <li><a href="#presentes" onclick="closeMenu()">Lista de Presentes</a></li>
             </ul>
         </nav>
     </header>
@@ -38,10 +38,6 @@
         <h1>Bianca & Bruno</h1>
         <p>30 . 01 . 2027</p>
         <p style="margin-top: 5px; font-size: 0.9rem;">São Caetano do Sul - SP</p>
-        <br/>
-        <a href="#presenca" style="color: var(--primary-color); font-family: 'Times New Roman', Times, serif; font-size: 1.1rem; text-decoration: none; transition: opacity 1.3s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
-            Não se esqueça de confirmar a sua presença!
-        </a>
     </section>
 
     <section class="countdown-section">
@@ -121,6 +117,24 @@
 
     <script src="js/script.js"></script>
 
+    <section id="presenca" class="rsvp-section">
+        <div class="rsvp-envelope-card">
+            
+            <div class="wax-seal-wrapper">
+                <div class="realistic-wax-seal">
+                    <span class="wax-letters">B&B</span>
+                </div>
+            </div>
+
+            <h2 class="section-title rsvp-title-pen">Confirme a sua presença</h2>
+            <p class="rsvp-subtitle">Sua presença é fundamental para tornar o nosso dia inesquecível!</p>
+            
+            <div id="rsvp-wizard" class="wizard"></div>
+
+        </div>
+    </section>
+
+    
     <section id="presentes" class="gifts-section">
     
     <div class="gifts-intro-card">
@@ -192,31 +206,7 @@
 </section>
 
     
-<section id="presenca" class="rsvp-section">
-        <div class="rsvp-envelope-card">
-            
-            <div class="wax-seal-wrapper">
-                <div class="realistic-wax-seal">
-                    <span class="wax-letters">B&B</span>
-                </div>
-            </div>
-
-            <h2 class="section-title rsvp-title-pen">Confirme a sua presença</h2>
-            <p class="rsvp-subtitle">Sua presença é fundamental para tornar o nosso dia inesquecível!</p>
-            
-            <div class="rsvp-form">
-                <div class="input-group">
-                    <label for="rsvp-name" class="rsvp-label">Nome(s) conforme consta no convite:</label>
-                    <input type="text" placeholder="Ex.: Tia Beatriz e Família" id="rsvp-name" class="rsvp-input">
-                </div>
-                
-                <button class="btn-rsvp" onclick="confirmarPresenca()">Enviar Confirmação ✨</button>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="cronograma" class="cronograma-section">
+<section id="cronograma" class="cronograma-section">
         <h2 class="section-title">Cronograma do Grande Dia</h2>
         <p class="subtitle">~ Detalhes ~</p>
 
@@ -308,7 +298,9 @@
     </div>
 </div>
 
+<script src="js/supabase-config.js"></script>
 <script src="js/script.js"></script>
 <script src="js/presentes-amazon.js"></script>
+<script src="js/rsvp-wizard.js"></script>
 </body>
 </html>

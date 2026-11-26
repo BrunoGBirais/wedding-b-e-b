@@ -142,7 +142,26 @@ header {
     }
 }
 
-.hero { text-align: center; padding: 60px 20px; background-color: #faf9f7; }
+.hero {
+    text-align: center;
+    padding: 70px 20px 60px;
+    min-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #faf9f7;
+    /* Véu claro no topo (céu) para o texto ficar legível; o casal aparece embaixo à direita */
+    background-image:
+        linear-gradient(to bottom, rgba(250, 249, 247, 0.88) 0%, rgba(250, 249, 247, 0.55) 30%, rgba(250, 249, 247, 0) 55%),
+        url("../img/hero-bianca-bruno.jpeg");
+    background-size: cover;
+    background-position: 65% 70%;
+    background-repeat: no-repeat;
+}
+@media (max-width: 768px) {
+    .hero { min-height: 75vh; background-position: 66% 60%; }
+}
 .hero h3 { font-weight: 300; letter-spacing: 3px; font-size: 0.9rem; margin-bottom: 10px; }
 .hero h1 { font-family: var(--font-title); font-size: 3.5rem; color: var(--primary-color); margin-bottom: 10px; }
 
@@ -899,7 +918,7 @@ header {
 
 .gift-card--reservado { background: #f3f3f1; }
 .gift-card--reservado:hover { transform: none; box-shadow: none; }
-.gift-card--reservado .amazon-gift-img img { filter: grayscale(100%); opacity: 0.45; }
+.gift-card--reservado .gift-img img { filter: grayscale(100%); opacity: 0.45; }
 .gift-card--reservado h4, .gift-card--reservado .price { color: var(--text-light); }
 .selo-reservado { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-6deg); background: var(--primary-color); color: var(--white); padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; white-space: nowrap; font-family: var(--font-text); }
 
@@ -912,3 +931,71 @@ header {
 .btn-reserva-primario { background-color: var(--primary-color); color: var(--white); border: none; }
 .btn-reserva-primario:disabled { opacity: 0.6; cursor: wait; }
 .btn-reserva-secundario { background-color: transparent; color: var(--primary-color); border: 1px solid var(--primary-color); }
+.gift-card--reservado .gift-img { position: relative; }
+
+/* ===== Wizard de confirmação de presença ===== */
+.wizard { text-align: left; max-width: 520px; margin: 0 auto; }
+.wizard .rsvp-label { margin-top: 14px; }
+.wizard .rsvp-input { margin-bottom: 4px; }
+
+.wiz-progresso { list-style: none; display: flex; justify-content: space-between; gap: 6px; margin: 0 0 28px; padding: 0; counter-reset: none; }
+.wiz-progresso li { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; position: relative; }
+.wiz-progresso li:not(:last-child)::after { content: ""; position: absolute; top: 14px; left: calc(50% + 18px); right: calc(-50% + 18px); height: 1px; background: #d8cfbf; }
+.wiz-bolinha { width: 28px; height: 28px; border-radius: 50%; border: 1px solid #c9beae; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; color: var(--text-light); background: var(--white); font-family: var(--font-text); }
+.wiz-rotulo { font-size: 0.7rem; color: var(--text-light); font-family: var(--font-text); text-align: center; }
+.wiz-progresso li.atual .wiz-bolinha { background: var(--primary-color); border-color: var(--primary-color); color: var(--white); }
+.wiz-progresso li.atual .wiz-rotulo { color: var(--primary-color); font-weight: 600; }
+.wiz-progresso li.feito .wiz-bolinha { border-color: var(--primary-color); color: var(--primary-color); }
+
+.wiz-titulo { font-family: var(--font-title); color: var(--primary-color); font-size: 1.4rem; margin-bottom: 6px; }
+.wiz-ajuda { font-size: 0.88rem; color: var(--text-light); line-height: 1.5; margin-bottom: 10px; }
+.wiz-vazio { font-size: 0.88rem; color: var(--text-light); font-style: italic; text-align: center; padding: 14px 0; }
+.wiz-erro { color: #b3261e; font-size: 0.85rem; min-height: 1.2em; margin-top: 12px; text-align: center; font-family: var(--font-text); }
+
+.wiz-consentimento { display: flex; gap: 10px; align-items: flex-start; margin-top: 18px; font-size: 0.82rem; color: var(--text-dark); line-height: 1.45; cursor: pointer; font-family: var(--font-text); }
+.wiz-consentimento input { margin-top: 3px; accent-color: var(--primary-color); width: 16px; height: 16px; flex-shrink: 0; }
+
+.wiz-botoes { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; margin-top: 24px; }
+.wiz-botoes .btn-rsvp { padding: 12px 26px; }
+.btn-rsvp:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.wiz-btn-secundario { background: transparent; color: var(--primary-color); border: 1px solid var(--primary-color); padding: 11px 20px; border-radius: 25px; font-family: var(--font-text); font-weight: 600; font-size: 0.82rem; cursor: pointer; }
+.wiz-btn-secundario:disabled { opacity: 0.5; cursor: not-allowed; }
+.wiz-link { background: none; border: none; color: var(--text-light); text-decoration: underline; font-size: 0.8rem; cursor: pointer; margin-top: 8px; font-family: var(--font-text); }
+
+.wiz-lista-pessoas { list-style: none; padding: 0; margin: 10px 0; display: flex; flex-direction: column; gap: 8px; }
+.wiz-lista-pessoas li { display: flex; justify-content: space-between; align-items: center; gap: 10px; background: var(--white); border: 1px solid #e0d7c6; border-radius: 8px; padding: 10px 14px; }
+.wiz-lista-pessoas li div { display: flex; flex-direction: column; min-width: 0; }
+.wiz-lista-pessoas strong { font-size: 0.92rem; color: var(--text-dark); overflow-wrap: anywhere; }
+.wiz-lista-pessoas span { font-size: 0.78rem; color: var(--text-light); }
+.wiz-remover { background: none; border: none; color: #b3261e; font-size: 0.8rem; cursor: pointer; flex-shrink: 0; font-family: var(--font-text); }
+
+.wiz-add { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; padding: 14px; border: 1px dashed #c9beae; border-radius: 8px; }
+.wiz-add .wiz-btn-secundario { align-self: flex-start; }
+
+.wiz-abas { display: flex; gap: 6px; margin: 10px 0 14px; border-bottom: 1px solid #e0d7c6; }
+.wiz-abas button { background: none; border: none; padding: 8px 16px; font-family: var(--font-text); font-size: 0.88rem; color: var(--text-light); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.wiz-abas button.ativa { color: var(--primary-color); border-bottom-color: var(--primary-color); font-weight: 600; }
+
+.wiz-presentes { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; max-height: 420px; overflow-y: auto; padding: 2px; }
+.wiz-presente { display: flex; flex-direction: column; align-items: center; gap: 6px; background: var(--white); border: 1px solid #e0d7c6; border-radius: 8px; padding: 10px 8px; cursor: pointer; font-family: var(--font-text); text-align: center; transition: border-color 0.2s, box-shadow 0.2s; }
+.wiz-presente:hover { border-color: var(--primary-color); }
+.wiz-presente.selecionado { border: 2px solid var(--primary-color); box-shadow: 0 0 0 3px rgba(53, 79, 59, 0.12); padding: 9px 7px; }
+.wiz-presente-img { width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; }
+.wiz-presente-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.wiz-presente-nome { font-size: 0.75rem; color: var(--text-dark); line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.wiz-presente-preco { font-size: 0.8rem; font-weight: 600; color: var(--primary-color); }
+
+.wiz-detalhe { margin-top: 16px; padding: 16px; background: var(--white); border: 1px solid var(--primary-color); border-radius: 8px; display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; }
+.wiz-detalhe .pix-key { margin: 0; }
+.wiz-detalhe .wiz-btn-secundario, .wiz-detalhe .wiz-link { align-self: flex-start; }
+
+.wiz-tag { display: inline-block; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; background: var(--primary-color); color: var(--white); margin-left: 6px; vertical-align: middle; }
+.wiz-resumo-presente { font-size: 0.9rem; margin-top: 14px; color: var(--text-dark); }
+.wiz-sucesso { text-align: center; padding: 10px 0; }
+.wiz-sucesso .pix-key { margin: 10px auto 0; }
+
+@media (max-width: 480px) {
+    .wiz-rotulo { font-size: 0.62rem; }
+    .wiz-botoes { justify-content: stretch; }
+    .wiz-botoes button { flex: 1; }
+}

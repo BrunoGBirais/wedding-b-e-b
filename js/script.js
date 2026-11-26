@@ -113,8 +113,8 @@ itemsInCategory.forEach(product => {
                 : product.fallbackEmoji;
 
             gridDiv.innerHTML += `
-                <div class="gift-card">
-                    <div class="gift-img" style="display:flex;align-items:center;justify-content:center;font-size:3.5rem; overflow:hidden;">${imgContent}</div>
+                <div class="gift-card" data-codigo-pix="${product.id}">
+                    <div class="gift-img" style="display:flex;align-items:center;justify-content:center;font-size:3.5rem; overflow:hidden; position:relative;">${imgContent}</div>
                     <h4>${product.name}</h4>
                     <div class="price">R$ ${priceFmt}</div>
                     <button class="btn-presentear" onclick="addToCart(${product.id})">Presentear</button>
@@ -125,9 +125,39 @@ itemsInCategory.forEach(product => {
         categoryDiv.appendChild(gridDiv);
         container.appendChild(categoryDiv);
     });
+
+    marcarPixReservados();
+}
+
+// Itens do PIX escolhidos no wizard de presença ficam indisponíveis aqui também.
+let codigosPixReservados = new Set();
+
+async function marcarPixReservados() {
+    if (typeof supabaseFetch !== "function") return;
+    try {
+        const reservados = await supabaseFetch("presentes?select=codigo_pix&tipo=eq.pix&reservado=is.true");
+        codigosPixReservados = new Set(reservados.map(r => r.codigo_pix));
+    } catch (e) {
+        console.error("Erro ao buscar presentes PIX reservados:", e);
+        return;
+    }
+
+    document.querySelectorAll("#gifts-container .gift-card[data-codigo-pix]").forEach(card => {
+        if (!codigosPixReservados.has(Number(card.dataset.codigoPix))) return;
+        card.classList.add("gift-card--reservado");
+        const btn = card.querySelector(".btn-presentear");
+        if (btn) btn.remove();
+        if (!card.querySelector(".selo-reservado")) {
+            const selo = document.createElement("span");
+            selo.className = "selo-reservado";
+            selo.textContent = "Já presenteado 💝";
+            card.querySelector(".gift-img").appendChild(selo);
+        }
+    });
 }
 
 function addToCart(id) {
+    if (codigosPixReservados.has(id)) return;
     const item = products.find(p => p.id === id);
     cart.push(item);
     
