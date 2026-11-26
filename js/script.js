@@ -220,15 +220,7 @@ function voltarParaCarrinho() {
 }
 
 function enviarComprovanteWhatsApp() {
-    const numeroWhatsApp = "5511966688598";
-    
-    const nomesPresentes = cart.map(item => item.name).join(", ");
-    
-    const valorTotal = document.getElementById('cart-total-value').innerText;
-    
-    const mensagem = encodeURIComponent(`Olá Bianca e Bruno! 🤍\n\nAcabei de escolher os seguintes presentes no vosso site:\n🎁 *${nomesPresentes}*\n\nValor total: R$ ${valorTotal}\n\nSegue em anexo o meu comprovativo/mensagem:`);
-    
-    window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagem}`, '_blank');
+    window.open("https://www.amazon.com.br/hz/wishlist/ls/22PKCUWC4NWXW?ref_=wl_share", "_blank");
 }
 
 function confirmarPresenca() {
