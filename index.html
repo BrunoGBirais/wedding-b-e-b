@@ -144,6 +144,21 @@
 
     <div id="gifts-container"></div>
 
+    <div class="category-group amazon-gifts">
+        <h3 class="category-title">Presentes na Amazon</h3>
+        <p class="amazon-intro">
+            Prefere dar um presente físico? Escolha um item abaixo e compre direto na Amazon.
+            Depois, clique em <strong>"Já comprei 💝"</strong> para o item sair da lista e ninguém comprar repetido.
+        </p>
+        <p class="amazon-intro amazon-dica">
+            💡 Para a entrega ir direto para o nosso endereço, você também pode comprar pela
+            <a id="amazon-lista-link" href="#" target="_blank" rel="noopener noreferrer">nossa lista na Amazon</a>.
+        </p>
+        <div id="amazon-gifts-container" class="gifts-grid">
+            <p class="amazon-msg">Carregando presentes...</p>
+        </div>
+    </div>
+
     <div class="modal-overlay" id="cart-modal">
         <div class="modal">
             <button class="close-modal" onclick="closeCart()">×</button>
@@ -268,6 +283,32 @@
     </div>
 </div>
 
+<div class="modal-overlay" id="popup-reserva">
+    <div class="modal" style="text-align: center; padding: 40px 30px;">
+        <button class="close-modal" onclick="fecharReserva()">×</button>
+
+        <div id="reserva-form">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">💝</div>
+            <h3 class="reserva-titulo">Que presente lindo!</h3>
+            <p class="reserva-texto">Você está marcando como comprado:<br><strong id="reserva-nome-presente"></strong></p>
+            <input type="text" id="reserva-nome-convidado" class="reserva-input" placeholder="Seu nome" maxlength="80">
+            <p id="reserva-erro" class="reserva-erro"></p>
+            <div class="reserva-botoes">
+                <button onclick="fecharReserva()" class="btn-reserva-secundario">Cancelar</button>
+                <button onclick="confirmarReserva()" id="btn-confirmar-reserva" class="btn-reserva-primario">Confirmar</button>
+            </div>
+        </div>
+
+        <div id="reserva-resultado" style="display: none;">
+            <div id="reserva-resultado-icone" style="font-size: 2.5rem; margin-bottom: 10px;"></div>
+            <h3 id="reserva-resultado-titulo" class="reserva-titulo"></h3>
+            <p id="reserva-resultado-texto" class="reserva-texto"></p>
+            <button onclick="fecharReserva()" class="btn-reserva-primario">Fechar</button>
+        </div>
+    </div>
+</div>
+
 <script src="js/script.js"></script>
+<script src="js/presentes-amazon.js"></script>
 </body>
 </html>

@@ -882,3 +882,33 @@ header {
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(37, 211, 102, 0.2);
 }
+/* ===== Presentes na Amazon (reserva via Supabase) ===== */
+.amazon-gifts { margin-top: 50px; }
+.amazon-intro { text-align: center; max-width: 700px; margin: 0 auto 12px; color: var(--text-light); line-height: 1.6; font-size: 0.95rem; }
+.amazon-dica { font-size: 0.85rem; margin-bottom: 30px; }
+.amazon-dica a { color: var(--primary-color); font-weight: 600; }
+.amazon-msg { grid-column: 1 / -1; text-align: center; color: var(--text-light); padding: 20px 0; }
+
+.amazon-gift-img { position: relative; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; overflow: hidden; }
+.amazon-gift-img img { width: 100%; height: 100%; object-fit: contain; }
+.amazon-gift-nome { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: auto !important; min-height: 2.6em; line-height: 1.3; }
+
+.amazon-acoes { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
+.btn-amazon { display: block; text-decoration: none; text-align: center; border: 1px solid var(--primary-color); color: var(--primary-color); padding: 11px; border-radius: 5px; font-weight: 600; font-size: 0.9rem; font-family: var(--font-text); transition: background-color 0.2s, color 0.2s; }
+.btn-amazon:hover { background-color: var(--primary-color); color: var(--white); }
+
+.gift-card--reservado { background: #f3f3f1; }
+.gift-card--reservado:hover { transform: none; box-shadow: none; }
+.gift-card--reservado .amazon-gift-img img { filter: grayscale(100%); opacity: 0.45; }
+.gift-card--reservado h4, .gift-card--reservado .price { color: var(--text-light); }
+.selo-reservado { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-6deg); background: var(--primary-color); color: var(--white); padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; white-space: nowrap; font-family: var(--font-text); }
+
+.reserva-titulo { font-family: var(--font-title); color: var(--primary-color); font-size: 1.5rem; margin-bottom: 15px; }
+.reserva-texto { font-family: var(--font-text); font-size: 0.95rem; color: var(--text-dark); margin-bottom: 20px; line-height: 1.5; }
+.reserva-input { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 5px; font-family: var(--font-text); font-size: 1rem; }
+.reserva-erro { color: #b3261e; font-size: 0.85rem; min-height: 1.2em; margin: 8px 0 15px; }
+.reserva-botoes { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-reserva-primario, .btn-reserva-secundario { padding: 12px 24px; border-radius: 25px; font-weight: 600; cursor: pointer; font-size: 0.85rem; font-family: var(--font-text); }
+.btn-reserva-primario { background-color: var(--primary-color); color: var(--white); border: none; }
+.btn-reserva-primario:disabled { opacity: 0.6; cursor: wait; }
+.btn-reserva-secundario { background-color: transparent; color: var(--primary-color); border: 1px solid var(--primary-color); }
