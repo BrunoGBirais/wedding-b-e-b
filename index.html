@@ -9,6 +9,28 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        @media (max-width: 768px) {
+            .hero {
+                background-position: center top !important;
+                justify-content: flex-start !important;
+                padding-top: 85px !important;
+                padding-bottom: 40px !important;
+            }
+
+            .hero h1 {
+                margin-bottom: 6px !important;
+            }
+
+            .hero .wedding-date {
+                margin-top: 4px !important;
+            }
+
+            .hero p:last-of-type {
+                margin-top: 4px !important;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -33,13 +55,12 @@
         </nav>
     </header>
 
-<section id="home" class="hero">
-    <h3 class="Convite Oficial">Convite Oficial</h3>
-    
-<h1>Bianca & Bruno</h1>
-<p class="wedding-date" style="font-size: 1.5rem; color: #ffffff; text-shadow: 0 0 10px rgba(255, 255, 255, 0.85), 0 2px 4px rgba(0, 0, 0, 0.5);">30 . 01 . 2027</p>
-<p style="margin-top: 8px; font-size: 1.1rem; color: #ffffff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.75), 0 2px 4px rgba(0, 0, 0, 0.5);">São Caetano do Sul - SP</p>
-</section>
+    <section id="home" class="hero">
+        <h3 class="Convite Oficial">Convite Oficial</h3>
+        <h1>Bianca & Bruno</h1>
+        <p class="wedding-date" style="font-size: 1.5rem; color: #ffffff; text-shadow: 0 0 10px rgba(255, 255, 255, 0.85), 0 2px 4px rgba(0, 0, 0, 0.5);">30 . 01 . 2027</p>
+        <p style="margin-top: 8px; font-size: 1.1rem; color: #ffffff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.75), 0 2px 4px rgba(0, 0, 0, 0.5);">São Caetano do Sul - SP</p>
+    </section>
 
     <section class="countdown-section">
         <h2>Contagem Regressiva</h2>
@@ -54,7 +75,6 @@
     <section id="local" class="location-section">
         <h2 class="section-title">Onde e Quando</h2>
         <div class="location-grid">
-            
             <div class="location-card">
                 <h3>Cerimônia (Igreja)</h3>
                 <p><strong>Endereço:</strong> Rua Piauí, 774, São Caetano do Sul - SP</p>
@@ -79,17 +99,13 @@
             
             <div class="location-card">
                 <h3>Dress Code</h3>
-                <p><strong>Desejável traje social</strong></p>
-                <p class="suggestion" style="margin-top: 10px; margin-bottom: 5px;">Sugestão de tons neutros:</p>
-    
-                <div class="palette-container">
-                    <div class="color-dot" style="background-color: #dfc3a3;" title="Beige"></div>
-                    <div class="color-dot" style="background-color: #b08d65;" title="Coffee"></div>
-                    <div class="color-dot" style="background-color: #cbb4b0;" title="Dreamy Pink"></div>
-                    <div class="color-dot" style="background-color: #4a3525;" title="Chocolate"></div>
-                </div>
+                <p><strong>Traje Social</strong></p>
+                <p><strong>Para eles:</strong> Terno e gravata</p>
+                <p><strong>Para elas:</strong> Vestido longo</p>
+                <p><em>Observação:</em> Pedimos gentilmente que evitem smoking e vestidos na cor verde-oliva, reservados para padrinhos e madrinhas.</p>
             </div>
-    </div>
+    </section>
+
     <section id="casal" class="couple-section">
         <h2 class="section-title">Um pouco sobre nós</h2>
         <div class="photos">
@@ -99,7 +115,7 @@
         <div style="text-align: left; max-width: 800px; margin: 0 auto; line-height: 1.8;">
             <p style="margin-bottom: 15px;">Desde os primeiros momentos, sentimos que havia algo especial entre nós. O que começou com conversas, descobertas e muitos sorrisos logo se transformou em uma conexão profunda, construída com leveza, cumplicidade e admiração mútua.</p>
             <p style="margin-bottom: 15px;">Ao longo dessa caminhada, aprendemos que o amor verdadeiro não acontece por acaso. Ele se fortalece nas pequenas escolhas diárias, no cuidado, no respeito e na decisão de caminhar juntos, mesmo diante dos desafios.</p>
-<p style="margin-bottom: 30px;">E é com essa alegria que esperamos compartilhar esse momento tão especial com vocês.</p>
+            <p style="margin-bottom: 30px;">E é com essa alegria que esperamos compartilhar esse momento tão especial com vocês.</p>
         </div>
         
         <a href="historia.html" style="display: block; text-decoration: none; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
@@ -108,15 +124,11 @@
             </div>
         </a>
 
-    <a href="historia.html" class="btn-historia">Mais da Nossa História →</a>
-
+        <a href="historia.html" class="btn-historia">Mais da Nossa História →</a>
     </section>
-        
-</section>
 
     <section id="presenca" class="rsvp-section">
         <div class="rsvp-envelope-card">
-            
             <div class="wax-seal-wrapper">
                 <div class="realistic-wax-seal">
                     <span class="wax-letters">B&B</span>
@@ -127,94 +139,87 @@
             <p class="rsvp-subtitle">Sua presença é fundamental para tornar o nosso dia inesquecível!</p>
             
             <div id="rsvp-wizard" class="wizard"></div>
-
         </div>
     </section>
 
-    
     <section id="presentes" class="gifts-section">
-    
-    <div class="gifts-intro-card">
-        <h2 class="section-title">Lista de Presentes</h2>
-    <div class="cart-bar">
-        <div class="cart-bar-info">
-            <span>🛒</span>
-            <span id="cart-status-text">Carrinho vazio</span>
-        </div>
-        <button class="btn-ver-carrinho" onclick="openCart()">Ver Carrinho</button>
-    </div>
-        <p class="gifts-main-text">
-            Sua presença é o nosso maior presente! Caso deseje nos abençoar e fazer parte da construção do nosso lar e da nossa lua de mel, preparamos esta lista com muito carinho.
-        </p>
-
-        <div class="gifts-badge-info">
-            <span class="badge-title">✦ Como funciona ✦</span>
-            <p>Você pode nos presentear com experiências e itens simbólicos via PIX, ou escolher presentes físicos da Amazon (comprando direto lá ou enviando o valor equivalente via PIX).</p>
-        </div>
-    </div>
-
-    <div id="gifts-container"></div>
-
-    <div class="category-group amazon-gifts">
-        <h3 class="category-title">Presentes na Amazon</h3>
-        <p class="amazon-intro">
-            Escolha como prefere nos presentear: clique em <strong>"Comprar na Amazon"</strong> para pagar no cartão/boleto e entregar direto para nós, ou clique em <strong>"Dar valor via PIX ❖"</strong> para enviar o valor equivalente.
-        </p>
-        <p class="amazon-intro amazon-dica">
-            💡 Você também pode acessar
-            <a id="amazon-lista-link" href="#" target="_blank" rel="noopener noreferrer">nossa lista completa na Amazon</a>.
-        </p>
-        <div id="amazon-gifts-container" class="gifts-grid">
-            <p class="amazon-msg">Carregando presentes...</p>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="cart-modal">
-        <div class="modal">
-            <button class="close-modal" onclick="closeCart()">×</button>
-            <h2 style="font-family: var(--font-title); color: var(--primary-color);">Seu Carrinho</h2>
-            
-            <div id="cart-items-list" class="cart-items">
-                <p style="text-align:center; color:#888;">Seu carrinho está vazio.</p>
+        <div class="gifts-intro-card">
+            <h2 class="section-title">Lista de Presentes</h2>
+            <div class="cart-bar">
+                <div class="cart-bar-info">
+                    <span>🛒</span>
+                    <span id="cart-status-text">Carrinho vazio</span>
+                </div>
+                <button class="btn-ver-carrinho" onclick="openCart()">Ver Carrinho</button>
             </div>
-            
-            <div class="cart-total" id="cart-total-box" style="display:none;">
-                Total: R$ <span id="cart-total-value">0,00</span>
-            </div>
-            
-            <button class="btn-checkout" id="btn-checkout" onclick="checkoutPix()" style="display:none;">
-                Pagar com PIX (Ver Chave)
-            </button>
+            <p class="gifts-main-text">
+                Sua presença é o nosso maior presente! Caso deseje nos abençoar e fazer parte da construção do nosso lar e da nossa lua de mel, preparamos esta lista com muito carinho.
+            </p>
 
-            <div class="pix-box" id="pix-instructions" style="display:none;">
-                <button onclick="voltarParaCarrinho()" class="btn-voltar-pix">← Voltar</button>
-                <p><strong>Quase lá!</strong> Copie a chave PIX abaixo e transfira o valor exato:</p>
-                <div class="pix-key" id="pix-key-value">44533749844</div>
-                <p id="pix-copiado-aviso" style="font-size: 0.85rem; color: var(--primary-color); font-weight: 600; margin-top: 6px; display: none;">
-                    ✓ Chave PIX copiada para a área de transferência!
-                </p>
-                <p style="font-size: 0.85rem; color: #666; margin-top:10px;">
-                    Após concluir o PIX no seu banco, informe seu nome abaixo para darmos baixa no presente:
-                </p>
-                <input type="text" id="pix-nome-convidado" class="reserva-input" placeholder="Seu nome" maxlength="80" style="margin-top: 10px;">
-                <button onclick="confirmarPagamentoPix()" id="btn-confirmar-pix" class="btn-checkout" style="margin-top: 10px;">
-                    Já fiz o PIX 💝
+            <div class="gifts-badge-info">
+                <span class="badge-title">✦ Como funciona ✦</span>
+                <p>Você pode nos presentear com experiências e itens simbólicos via PIX, ou escolher presentes físicos da Amazon (comprando direto lá ou enviando o valor equivalente via PIX).</p>
+            </div>
+        </div>
+
+        <div id="gifts-container"></div>
+
+        <div class="category-group amazon-gifts">
+            <h3 class="category-title">Presentes na Amazon</h3>
+            <p class="amazon-intro">
+                Escolha como prefere nos presentear: clique em <strong>"Comprar na Amazon"</strong> para pagar no cartão/boleto e entregar direto para nós, ou clique em <strong>"Dar valor via PIX ❖"</strong> para enviar o valor equivalente.
+            </p>
+            <p class="amazon-intro amazon-dica">
+                💡 Você também pode acessar
+                <a id="amazon-lista-link" href="#" target="_blank" rel="noopener noreferrer">nossa lista completa na Amazon</a>.
+            </p>
+            <div id="amazon-gifts-container" class="gifts-grid">
+                <p class="amazon-msg">Carregando presentes...</p>
+            </div>
+        </div>
+
+        <div class="modal-overlay" id="cart-modal" style="display: none;">
+            <div class="modal">
+                <button class="close-modal" onclick="closeCart()">×</button>
+                <h2 style="font-family: var(--font-title); color: var(--primary-color);">Seu Carrinho</h2>
+                
+                <div id="cart-items-list" class="cart-items">
+                    <p style="text-align:center; color:#888;">Seu carrinho está vazio.</p>
+                </div>
+                
+                <div class="cart-total" id="cart-total-box" style="display:none;">
+                    Total: R$ <span id="cart-total-value">0,00</span>
+                </div>
+                
+                <button class="btn-checkout" id="btn-checkout" onclick="checkoutPix()" style="display:none;">
+                    Pagar com PIX (Ver Chave)
                 </button>
+
+                <div class="pix-box" id="pix-instructions" style="display:none;">
+                    <button onclick="voltarParaCarrinho()" class="btn-voltar-pix">← Voltar</button>
+                    <p><strong>Quase lá!</strong> Copie a chave PIX abaixo e transfira o valor exato:</p>
+                    <div class="pix-key" id="pix-key-value">44533749844</div>
+                    <p id="pix-copiado-aviso" style="font-size: 0.85rem; color: var(--primary-color); font-weight: 600; margin-top: 6px; display: none;">
+                        ✓ Chave PIX copiada para a área de transferência!
+                    </p>
+                    <p style="font-size: 0.85rem; color: #666; margin-top:10px;">
+                        Após concluir o PIX no seu banco, informe seu nome abaixo para darmos baixa no presente:
+                    </p>
+                    <input type="text" id="pix-nome-convidado" class="reserva-input" placeholder="Seu nome" maxlength="80" style="margin-top: 10px;">
+                    <button onclick="confirmarPagamentoPix()" id="btn-confirmar-pix" class="btn-checkout" style="margin-top: 10px;">
+                        Já fiz o PIX 💝
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-</section>
-
-    
-<section id="cronograma" class="cronograma-section">
+    <section id="cronograma" class="cronograma-section">
         <h2 class="section-title">Cronograma do Grande Dia</h2>
         <p class="subtitle">~ Detalhes ~</p>
 
         <div style="max-width: 800px; margin: 20px auto 40px; padding: 0 20px;">
-            
             <ul class="timeline">
-                
                 <li>
                     <div class="timeline-time">19h30</div>
                     <div class="timeline-content">
@@ -242,66 +247,64 @@
                         <p class="timeline-note">Teremos fotógrafo e videomaker, então viva o momento! Tire apenas algumas fotos para vermos a sua perspectiva, mas não se preocupe em registrar tudo.</p>
                     </div>
                 </li>
-
             </ul>
 
             <p style="margin-top: 50px; font-style: italic; text-align: center; color: var(--primary-color); font-weight: 500; font-size: 1.1rem;">
                 Será um dia de muita alegria; cada pequeno momento foi pensado com cuidado para proporcionar um dia muitíssimo especial!
             </p>
-
         </div>
     </section>
 
     <div class="modal-overlay" id="popup-confirmacao" style="display: none;">
-    <div class="modal" style="text-align: center; padding: 40px 30px;">
-        <div style="font-size: 2.5rem; margin-bottom: 10px;">🤍</div>
-        <h3 style="font-family: var(--font-title); color: var(--primary-color); font-size: 1.5rem; margin-bottom: 15px;">Presente Adicionado!</h3>
-        <p id="popup-texto-item" style="font-family: var(--font-text); font-size: 0.95rem; color: var(--text-dark); margin-bottom: 25px; line-height: 1.5;"></p>
-        
-        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-            <button onclick="fecharPopupConfirmacao()" style="background-color: transparent; color: var(--primary-color); border: 1px solid var(--primary-color); padding: 12px 20px; border-radius: 25px; font-weight: 600; cursor: pointer; font-size: 0.85rem; font-family: var(--font-text);">Continuar Escolhendo</button>
-            <button onclick="irParaCarrinho()" style="background-color: var(--primary-color); color: var(--white); border: none; padding: 12px 24px; border-radius: 25px; font-weight: 600; cursor: pointer; font-size: 0.85rem; font-family: var(--font-text);">Ver Carrinho</button>
-        </div>
-    </div>
-</div>
-
-<div class="modal-overlay" id="popup-rsvp-alerta">
-    <div class="modal" style="text-align: center; padding: 40px 30px;">
-        <div style="font-size: 2.2rem; margin-bottom: 10px;">✨</div>
-        <h3 style="font-family: var(--font-title); color: var(--primary-color); font-size: 1.4rem; margin-bottom: 15px;">Atenção</h3>
-        <p style="font-family: var(--font-text); font-size: 0.95rem; color: var(--text-dark); margin-bottom: 25px; line-height: 1.5;">Por favor, preencha o seu nome no campo antes de enviar a confirmação.</p>
-        <button onclick="fecharRsvpAlerta()" style="background-color: var(--primary-color); color: var(--white); border: none; padding: 12px 28px; border-radius: 25px; font-weight: 600; cursor: pointer; font-size: 0.85rem; font-family: var(--font-text);">Entendido</button>
-    </div>
-</div>
-
-<div class="modal-overlay" id="popup-reserva">
-    <div class="modal" style="text-align: center; padding: 40px 30px;">
-        <button class="close-modal" onclick="fecharReserva()">×</button>
-
-        <div id="reserva-form">
-            <div style="font-size: 2.5rem; margin-bottom: 10px;">💝</div>
-            <h3 class="reserva-titulo">Que presente lindo!</h3>
-            <p class="reserva-texto">Você está marcando como comprado:<br><strong id="reserva-nome-presente"></strong></p>
-            <input type="text" id="reserva-nome-convidado" class="reserva-input" placeholder="Seu nome" maxlength="80">
-            <p id="reserva-erro" class="reserva-erro"></p>
-            <div class="reserva-botoes">
-                <button onclick="fecharReserva()" class="btn-reserva-secundario">Cancelar</button>
-                <button onclick="confirmarReserva()" id="btn-confirmar-reserva" class="btn-reserva-primario">Confirmar</button>
+        <div class="modal" style="text-align: center; padding: 40px 30px;">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">🤍</div>
+            <h3 style="font-family: var(--font-title); color: var(--primary-color); font-size: 1.5rem; margin-bottom: 15px;">Presente Adicionado!</h3>
+            <p id="popup-texto-item" style="font-family: var(--font-text); font-size: 0.95rem; color: var(--text-dark); margin-bottom: 25px; line-height: 1.5;"></p>
+            
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <button onclick="fecharPopupConfirmacao()" style="background-color: transparent; color: var(--primary-color); border: 1px solid var(--primary-color); padding: 12px 20px; border-radius: 25px; font-weight: 600; cursor: pointer; font-size: 0.85rem; font-family: var(--font-text);">Continuar Escolhendo</button>
+                <button onclick="irParaCarrinho()" style="background-color: var(--primary-color); color: var(--white); border: none; padding: 12px 24px; border-radius: 25px; font-weight: 600; cursor: pointer; font-size: 0.85rem; font-family: var(--font-text);">Ver Carrinho</button>
             </div>
         </div>
+    </div>
 
-        <div id="reserva-resultado" style="display: none;">
-            <div id="reserva-resultado-icone" style="font-size: 2.5rem; margin-bottom: 10px;"></div>
-            <h3 id="reserva-resultado-titulo" class="reserva-titulo"></h3>
-            <p id="reserva-resultado-texto" class="reserva-texto"></p>
-            <button onclick="fecharReserva()" class="btn-reserva-primario">Fechar</button>
+    <div class="modal-overlay" id="popup-rsvp-alerta" style="display: none;">
+        <div class="modal" style="text-align: center; padding: 40px 30px;">
+            <div style="font-size: 2.2rem; margin-bottom: 10px;">✨</div>
+            <h3 style="font-family: var(--font-title); color: var(--primary-color); font-size: 1.4rem; margin-bottom: 15px;">Atenção</h3>
+            <p style="font-family: var(--font-text); font-size: 0.95rem; color: var(--text-dark); margin-bottom: 25px; line-height: 1.5;">Por favor, preencha o seu nome no campo antes de enviar a confirmação.</p>
+            <button onclick="fecharRsvpAlerta()" style="background-color: var(--primary-color); color: var(--white); border: none; padding: 12px 28px; border-radius: 25px; font-weight: 600; cursor: pointer; font-size: 0.85rem; font-family: var(--font-text);">Entendido</button>
         </div>
     </div>
-</div>
 
-<script src="js/supabase-config.js"></script>
-<script src="js/script.js"></script>
-<script src="js/presentes-amazon.js"></script>
-<script src="js/rsvp-wizard.js"></script>
+    <div class="modal-overlay" id="popup-reserva" style="display: none;">
+        <div class="modal" style="text-align: center; padding: 40px 30px;">
+            <button class="close-modal" onclick="fecharReserva()">×</button>
+
+            <div id="reserva-form">
+                <div style="font-size: 2.5rem; margin-bottom: 10px;">💝</div>
+                <h3 class="reserva-titulo">Que presente lindo!</h3>
+                <p class="reserva-texto">Você está marcando como comprado:<br><strong id="reserva-nome-presente"></strong></p>
+                <input type="text" id="reserva-nome-convidado" class="reserva-input" placeholder="Seu nome" maxlength="80">
+                <p id="reserva-erro" class="reserva-erro"></p>
+                <div class="reserva-botoes">
+                    <button onclick="fecharReserva()" class="btn-reserva-secundario">Cancelar</button>
+                    <button onclick="confirmarReserva()" id="btn-confirmar-reserva" class="btn-reserva-primario">Confirmar</button>
+                </div>
+            </div>
+
+            <div id="reserva-resultado" style="display: none;">
+                <div id="reserva-resultado-icone" style="font-size: 2.5rem; margin-bottom: 10px;"></div>
+                <h3 id="reserva-resultado-titulo" class="reserva-titulo"></h3>
+                <p id="reserva-resultado-texto" class="reserva-texto"></p>
+                <button onclick="fecharReserva()" class="btn-reserva-primario">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/supabase-config.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/presentes-amazon.js"></script>
+    <script src="js/rsvp-wizard.js"></script>
 </body>
 </html>

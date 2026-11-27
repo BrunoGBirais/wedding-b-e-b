@@ -23,25 +23,43 @@ updateTimer();
 setInterval(updateTimer, 1000);
 
 const products = [
+    // --- PIX Livre ---
+    {
+        id: 0,
+        name: "Pix para os noivos",
+        price: null,
+        isFreePix: true,
+        category: "Itens de Presentes na Lua de Mel",
+        image: "img/presentes/pix-livre.jpg",
+        fallbackEmoji: "💚"
+    },
     // --- Lua de Mel ---
-    { id: 1, name: "Passagens lua de mel", price: 4196.60, category: "Itens de Presentes na Lua de Mel", image:"img/presentes/passagens-lua-de-mel.jpg",fallbackEmoji: "✈️" },
-    { id: 2, name: "Almoço para o casal lua de mel", price: 282.62, category: "Itens de Presentes na Lua de Mel", image:"img/presentes/cafe-da-manha-lua-de-mel.jpg",fallbackEmoji: "🍽️" },
-    { id: 3, name: "Café da manhã lua de mel", price: 230.59, category: "Itens de Presentes na Lua de Mel", image:"img/presentes/almoco-lua-de-mel.jpg", fallbackEmoji: "🥐" },
-    { id: 4, name: "Jantar lua de mel", price: 334.64, category: "Itens de Presentes na Lua de Mel", image:"img/presentes/jantar-lua-de-mel.jpg",fallbackEmoji: "🍷" },
-    { id: 5, name: "Um vale passeio na lua de mel para o casal", price: 261.81, category: "Itens de Presentes na Lua de Mel", image:"img/presentes/passeio-lua-de-mel.jpg", fallbackEmoji: "🗺️" },
-    { id: 6, name: "Uma rodada de caipirinhas ao casal", price: 126.55, category: "Itens de Presentes na Lua de Mel", image:"img/presentes/rodada-caipirinha.jpg",fallbackEmoji: "🍹" },
-    { id: 7, name: "Vale spa para a noiva", price: 398.87, category: "Itens de Presentes na Lua de Mel", image:"img/presentes/spa-day-noiva-lua-de-mel.jpg", fallbackEmoji: "💆‍♀️" },
-    { id: 8, name: "One Piece: em busca do tesouro do casal", price: 554.94, category: "Itens de Presentes na Lua de Mel", image:"img/presentes/onepiece.jpg", fallbackEmoji: "🏴‍☠️" },
-    { id: 9, name: "Trilha guiada com vista épica na lua de mel", price: 274.50, category: "Itens de Presentes na Lua de Mel", image:"img/presentes/trilha.webp" },
-    { id: 10, name: "Piquenique ao pôr do sol em um mirante especial", price: 196.40, category: "Itens de Presentes na Lua de Mel", image:"img/presentes/piquenique.webp" },
-    { id: 11, name: "Aluguel de carro para explorar praias e mirantes", price: 312.40, category: "Itens de Presentes na Lua de Mel", image:"img/presentes/carro.avif"},
-    { id: 12, name: "Degustação de vinhos e queijos lua de mel", price: 164.90, category: "Itens de Presentes na Lua de Mel", image:"img/presentes/vinhos.jpg" }
+    { id: 1, name: "Passagens lua de mel", price: 4196.60, category: "Itens de Presentes na Lua de Mel", image: "img/presentes/passagens-lua-de-mel.jpg", fallbackEmoji: "✈️" },
+    { id: 2, name: "Almoço para o casal lua de mel", price: 282.62, category: "Itens de Presentes na Lua de Mel", image: "img/presentes/cafe-da-manha-lua-de-mel.jpg", fallbackEmoji: "🍽️" },
+    { id: 3, name: "Café da manhã lua de mel", price: 230.59, category: "Itens de Presentes na Lua de Mel", image: "img/presentes/almoco-lua-de-mel.jpg", fallbackEmoji: "🥐" },
+    { id: 4, name: "Jantar lua de mel", price: 334.64, category: "Itens de Presentes na Lua de Mel", image: "img/presentes/jantar-lua-de-mel.jpg", fallbackEmoji: "🍷" },
+    { id: 5, name: "Um vale passeio na lua de mel para o casal", price: 261.81, category: "Itens de Presentes na Lua de Mel", image: "img/presentes/passeio-lua-de-mel.jpg", fallbackEmoji: "🗺️" },
+    { id: 6, name: "Uma rodada de caipirinhas ao casal", price: 126.55, category: "Itens de Presentes na Lua de Mel", image: "img/presentes/rodada-caipirinha.jpg", fallbackEmoji: "🍹" },
+    { id: 7, name: "Vale spa para a noiva", price: 398.87, category: "Itens de Presentes na Lua de Mel", image: "img/presentes/spa-day-noiva-lua-de-mel.jpg", fallbackEmoji: "💆‍♀️" },
+    { id: 8, name: "One Piece: em busca do tesouro do casal", price: 554.94, category: "Itens de Presentes na Lua de Mel", image: "img/presentes/onepiece.jpg", fallbackEmoji: "🏴‍☠️" },
+    { id: 9, name: "Trilha guiada com vista épica na lua de mel", price: 274.50, category: "Itens de Presentes na Lua de Mel", image: "img/presentes/trilha.webp", fallbackEmoji: "🥾" },
+    { id: 10, name: "Piquenique ao pôr do sol em um mirante especial", price: 196.40, category: "Itens de Presentes na Lua de Mel", image: "img/presentes/piquenique.webp", fallbackEmoji: "🧺" },
+    { id: 11, name: "Aluguel de carro para viagem", price: 312.40, category: "Itens de Presentes na Lua de Mel", image: "img/presentes/carro.avif", fallbackEmoji: "🚗" },
+    { id: 12, name: "Degustação de vinhos e queijos lua de mel", price: 164.90, category: "Itens de Presentes na Lua de Mel", image: "img/presentes/vinhos.jpg", fallbackEmoji: "🧀" }
 ];
 
 let cart = [];
 
+function formatarValorVitrine(product) {
+    if (product.isFreePix || product.price === null || product.price === undefined) {
+        return "Valor livre";
+    }
+    return `R$ ${Number(product.price).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
+}
+
 function renderProducts() {
     const container = document.getElementById("gifts-container");
+    if (!container) return;
     container.innerHTML = "";
 
     const categories = [...new Set(products.map(p => p.category))];
@@ -49,7 +67,7 @@ function renderProducts() {
     categories.forEach(category => {
         const categoryDiv = document.createElement("div");
         categoryDiv.className = "category-group";
-        
+
         const categoryTitle = document.createElement("h3");
         categoryTitle.className = "category-title";
         categoryTitle.innerText = category;
@@ -60,17 +78,18 @@ function renderProducts() {
 
         const itemsInCategory = products.filter(p => p.category === category);
         itemsInCategory.forEach(product => {
-            const priceFmt = product.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-            
-            const imgContent = product.image 
-                ? `<img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 5px;">` 
-                : product.fallbackEmoji;
+            const priceLabel = formatarValorVitrine(product);
+            const fallback = product.fallbackEmoji || "🎁";
+
+            const imgContent = product.image
+                ? `<img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 5px;" onerror="this.outerHTML='<span>${fallback}</span>'">`
+                : fallback;
 
             gridDiv.innerHTML += `
                 <div class="gift-card" data-codigo-pix="${product.id}">
                     <div class="gift-img" style="display:flex;align-items:center;justify-content:center;font-size:3.5rem; overflow:hidden; position:relative;">${imgContent}</div>
                     <h4>${product.name}</h4>
-                    <div class="price">R$ ${priceFmt}</div>
+                    <div class="price">${priceLabel}</div>
                     <button class="btn-presentear" onclick="addToCart(${product.id})">Presentear via PIX</button>
                 </div>
             `;
@@ -86,7 +105,6 @@ function renderProducts() {
 let codigosPixReservados = new Set();
 
 async function marcarPixReservados() {
-    // Os itens exclusivamente PIX são estáticos no site e não consultam a tabela Amazon
     return;
 }
 
@@ -94,34 +112,39 @@ function addToCart(itemOrId) {
     let item;
 
     if (typeof itemOrId === "object" && itemOrId !== null) {
-        // Veio de um produto da Amazon ("Dar valor via PIX ❖")
+        const numPrice = Number(itemOrId.price);
         item = {
             name: itemOrId.name,
-            price: Number(itemOrId.price),
+            price: Number.isFinite(numPrice) ? numPrice : 0,
+            isFreePix: Boolean(itemOrId.isFreePix),
             supabaseId: itemOrId.supabaseId ?? null
         };
     } else {
-        // Veio da lista original de presentes PIX
         if (typeof codigosPixReservados !== "undefined" && codigosPixReservados.has(itemOrId)) return;
-        item = products.find(p => p.id === itemOrId);
+        const found = products.find(p => p.id === itemOrId);
+        if (!found) return;
+        item = {
+            name: found.name,
+            price: found.price !== null && found.price !== undefined ? Number(found.price) : 0,
+            isFreePix: Boolean(found.isFreePix),
+            supabaseId: null
+        };
     }
-
-    if (!item) return;
 
     cart.push(item);
 
-    document.getElementById('popup-texto-item').innerHTML = `<strong>${item.name}</strong> foi adicionado com sucesso ao carrinho dos noivos!`;
-    document.getElementById('popup-confirmacao').style.display = 'flex';
+    document.getElementById("popup-texto-item").innerHTML = `<strong>${item.name}</strong> foi adicionado com sucesso ao carrinho dos noivos!`;
+    document.getElementById("popup-confirmacao").style.display = "flex";
 
     updateCartUI();
 }
 
 function fecharPopupConfirmacao() {
-    document.getElementById('popup-confirmacao').style.display = 'none';
+    document.getElementById("popup-confirmacao").style.display = "none";
 }
 
 function irParaCarrinho() {
-    document.getElementById('popup-confirmacao').style.display = 'none';
+    document.getElementById("popup-confirmacao").style.display = "none";
     openCart();
 }
 
@@ -131,49 +154,52 @@ function removeFromCart(index) {
 }
 
 function updateCartUI() {
-    const list = document.getElementById('cart-items-list');
-    const btnVoltar = document.querySelector('.btn-voltar-pix');
-    if (btnVoltar) btnVoltar.style.display = 'none';
+    const list = document.getElementById("cart-items-list");
+    const btnVoltar = document.querySelector(".btn-voltar-pix");
+    if (btnVoltar) btnVoltar.style.display = "none";
 
     if (cart.length === 0) {
-        document.getElementById('cart-status-text').innerText = 'Carrinho vazio';
+        document.getElementById("cart-status-text").innerText = "Carrinho vazio";
         list.innerHTML = '<p style="text-align:center; color:#888;">Seu carrinho está vazio.</p>';
-        document.getElementById('cart-total-box').style.display = 'none';
-        document.getElementById('btn-checkout').style.display = 'none';
-        document.getElementById('pix-instructions').style.display = 'none';
+        document.getElementById("cart-total-box").style.display = "none";
+        document.getElementById("btn-checkout").style.display = "none";
+        document.getElementById("pix-instructions").style.display = "none";
         return;
     }
 
-    document.getElementById('cart-status-text').innerText = ` ${cart.length} item(ns) selecionado(s)`;
-    list.innerHTML = '';
-    
+    document.getElementById("cart-status-text").innerText = ` ${cart.length} item(ns) selecionado(s)`;
+    list.innerHTML = "";
+
     let total = 0;
     cart.forEach((item, index) => {
-        total += item.price;
-        const priceFmt = item.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+        const valor = Number(item.price) || 0;
+        total += valor;
+        const priceFmt = item.isFreePix && valor === 0
+            ? "Valor livre"
+            : `R$ ${valor.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
         list.innerHTML += `
             <div class="cart-item">
                 <div>
                     <strong>${item.name}</strong><br>
                     <button class="remove-btn" onclick="removeFromCart(${index})">Remover item</button>
                 </div>
-                <div style="font-weight: 600;">R$ ${priceFmt}</div>
+                <div style="font-weight: 600;">${priceFmt}</div>
             </div>`;
     });
-    
-    document.getElementById('cart-total-value').innerText = total.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-    document.getElementById('cart-total-box').style.display = 'block';
-    document.getElementById('btn-checkout').style.display = 'block';
-    document.getElementById('pix-instructions').style.display = 'none';
+
+    document.getElementById("cart-total-value").innerText = total.toLocaleString("pt-BR", { minimumFractionDigits: 2 });
+    document.getElementById("cart-total-box").style.display = "block";
+    document.getElementById("btn-checkout").style.display = "block";
+    document.getElementById("pix-instructions").style.display = "none";
 }
 
 function openCart() {
-    document.getElementById('cart-modal').style.display = 'flex';
+    document.getElementById("cart-modal").style.display = "flex";
     updateCartUI();
 }
 
 function closeCart() {
-    document.getElementById('cart-modal').style.display = 'none';
+    document.getElementById("cart-modal").style.display = "none";
 }
 
 function checkoutPix() {
@@ -183,18 +209,18 @@ function checkoutPix() {
         navigator.clipboard.writeText(chavePix).catch(() => {});
     }
 
-    document.getElementById('btn-checkout').style.display = 'none';
-    document.getElementById('pix-instructions').style.display = 'block';
+    document.getElementById("btn-checkout").style.display = "none";
+    document.getElementById("pix-instructions").style.display = "block";
 
-    const avisoCopiado = document.getElementById('pix-copiado-aviso');
-    if (avisoCopiado) avisoCopiado.style.display = 'block';
+    const avisoCopiado = document.getElementById("pix-copiado-aviso");
+    if (avisoCopiado) avisoCopiado.style.display = "block";
 
-    const btnVoltar = document.querySelector('.btn-voltar-pix');
-    if (btnVoltar) btnVoltar.style.display = 'inline-block';
+    const btnVoltar = document.querySelector(".btn-voltar-pix");
+    if (btnVoltar) btnVoltar.style.display = "inline-block";
 
-    const nomeInput = document.getElementById('pix-nome-convidado');
+    const nomeInput = document.getElementById("pix-nome-convidado");
     if (nomeInput) {
-        nomeInput.value = '';
+        nomeInput.value = "";
         nomeInput.focus();
     }
 }
@@ -208,6 +234,13 @@ async function confirmarPagamentoPix() {
         if (nomeInput) nomeInput.focus();
         return;
     }
+
+// Não dá baixa no Supabase: presentes via PIX não reservam/bloqueiam o item na vitrine
+    cart = [];
+    updateCartUI();
+    closeCart();
+    alert(`Muito obrigado, ${nome}! Seu presente via PIX foi registrado com sucesso.`);
+}    
 
     const itensAmazon = cart.filter(item => item.supabaseId !== null && item.supabaseId !== undefined);
     if (itensAmazon.length > 0 && typeof supabaseFetch === "function") {
@@ -236,37 +269,38 @@ async function confirmarPagamentoPix() {
 }
 
 function voltarParaCarrinho() {
-    document.getElementById('pix-instructions').style.display = 'none';
+    document.getElementById("pix-instructions").style.display = "none";
 
-    const btnVoltar = document.querySelector('.btn-voltar-pix');
-    if (btnVoltar) btnVoltar.style.display = 'none';
+    const btnVoltar = document.querySelector(".btn-voltar-pix");
+    if (btnVoltar) btnVoltar.style.display = "none";
 
-    document.getElementById('btn-checkout').style.display = 'block';
+    document.getElementById("btn-checkout").style.display = "block";
 }
 
 function confirmarPresenca() {
-    const nome = document.getElementById('rsvp-name').value;
-    
-    if(nome) {
+    const nomeEl = document.getElementById("rsvp-name");
+    const nome = nomeEl ? nomeEl.value : "";
+
+    if (nome) {
         const urlGoogleForms = "https://forms.gle/dEP5bN9yjrHWaKZt9";
-        window.open(urlGoogleForms, '_blank');
+        window.open(urlGoogleForms, "_blank");
     } else {
-        document.getElementById('popup-rsvp-alerta').style.display = 'flex';
+        document.getElementById("popup-rsvp-alerta").style.display = "flex";
     }
 }
 
 function fecharRsvpAlerta() {
-    document.getElementById('popup-rsvp-alerta').style.display = 'none';
+    document.getElementById("popup-rsvp-alerta").style.display = "none";
 }
 
 function toggleMenu() {
-    const navLinks = document.getElementById('nav-links');
-    navLinks.classList.toggle('active');
+    const navLinks = document.getElementById("nav-links");
+    navLinks.classList.toggle("active");
 }
 
 function closeMenu() {
-    const navLinks = document.getElementById('nav-links');
-    navLinks.classList.remove('active');
+    const navLinks = document.getElementById("nav-links");
+    navLinks.classList.remove("active");
 }
 
 window.onload = renderProducts;
