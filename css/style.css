@@ -1,3 +1,7 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 :root {
     --bg-color: #f7f4eb;          
     --primary-color: #354f3b;     
@@ -16,6 +20,7 @@ body {
     line-height: 1.6; 
     background-image: radial-gradient(circle, rgba(184, 151, 83, 0.03) 1px, transparent 1px);
     background-size: 24px 24px;
+    overflow-x: hidden;
 }
 
 .save-date-marquee {
@@ -159,11 +164,36 @@ header {
     background-position: 65% 70%;
     background-repeat: no-repeat;
 }
-@media (max-width: 768px) {
-    .hero { min-height: 75vh; background-position: 66% 60%; }
-}
+
 .hero h3 { font-weight: 300; letter-spacing: 3px; font-size: 0.9rem; margin-bottom: 10px; }
 .hero h1 { font-family: var(--font-title); font-size: 3.5rem; color: var(--primary-color); margin-bottom: 10px; }
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: 82vh;
+        padding: 32px 16px 60px;
+        justify-content: flex-start;
+        background-position: 64% 92%;
+        background-image:
+            linear-gradient(to bottom, rgba(250, 249, 247, 0.92) 0%, rgba(250, 249, 247, 0.65) 26%, rgba(250, 249, 247, 0) 48%),
+            url("../img/hero-bianca-bruno.jpeg");
+    }
+
+    .hero h3 {
+        font-size: 0.8rem;
+        margin-bottom: 6px;
+    }
+
+    .hero h1 {
+        font-size: 2.35rem;
+        line-height: 1.15;
+        margin-bottom: 6px;
+    }
+
+    .hero .wedding-date {
+        font-size: 1.25rem !important;
+    }
+}
 
 .section-title { font-family: var(--font-title); font-size: 2.2rem; color: var(--primary-color); margin: 30px 0 15px; font-style: italic; text-align: center; }
 .subtitle { text-align: center; font-size: 0.95rem; color: var(--text-light); max-width: 700px; margin: 0 auto 40px; padding: 0 20px;}
@@ -377,7 +407,7 @@ header {
 .btn-rsvp { background-color: var(--rosa-btn); color: var(--text-dark); border: none; padding: 15px 40px; border-radius: 25px; font-weight: 600; cursor: pointer; font-size: 1rem;}
 
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 2000; }
-.modal { background: var(--white); width: 90%; max-width: 450px; border-radius: 10px; padding: 30px; position: relative; max-height: 85vh; overflow-y: auto;}
+.modal { background: var(--white); width: 92%; max-width: 450px; border-radius: 10px; padding: 26px 20px; position: relative; max-height: 85vh; overflow-y: auto; box-sizing: border-box; }
 .close-modal { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; cursor: pointer; border: none; background: none; color: var(--text-light);}
 
 .cart-items { margin: 20px 0; border-top: 1px solid #eee; padding-top: 15px;}
@@ -385,20 +415,20 @@ header {
 .remove-btn { background: none; border: none; color: red; font-size: 0.8rem; text-decoration: underline; cursor: pointer; margin-top: 5px;}
 .cart-total { font-family: var(--font-title); font-size: 1.5rem; font-weight: 600; text-align: right; margin-bottom: 20px; color: var(--primary-color); }
 
-.btn-checkout { background: var(--primary-color); color: var(--white); border: none; padding: 15px; width: 100%; border-radius: 5px; font-size: 1.1rem; cursor: pointer; font-weight: bold; font-family: var(--font-text);}
-.pix-box { display: none; background: #f9f9f9; padding: 20px; border-radius: 8px; text-align: center; margin-top: 20px; border: 1px solid #ddd; }
-.pix-key { background: #fff; border: 1px dashed #ccc; padding: 15px; margin: 15px 0; font-weight: bold; word-break: break-all; font-size: 1.1rem; color: #333;}
+.btn-checkout { background: var(--primary-color); color: var(--white); border: none; padding: 15px; width: 100%; border-radius: 5px; font-size: 1.05rem; cursor: pointer; font-weight: bold; font-family: var(--font-text); box-sizing: border-box; }
+.pix-box { display: none; background: #f9f9f9; padding: 45px 16px 20px; border-radius: 8px; text-align: center; margin-top: 20px; border: 1px solid #ddd; position: relative; box-sizing: border-box; }
+.pix-key { background: #fff; border: 1px dashed #ccc; padding: 14px; margin: 15px 0; font-weight: bold; word-break: break-all; font-size: 1.05rem; color: #333; box-sizing: border-box; }
 
 .btn-voltar-pix {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 12px;
+    left: 12px;
     background-color: transparent;
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
     font-family: var(--font-text);
     font-size: 0.8rem;
-    padding: 6px 16px;
+    padding: 5px 14px;
     border-radius: 20px;
     cursor: pointer;
     font-weight: 500;
@@ -478,7 +508,7 @@ header {
     top: 5px;
     width: 18px;
     height: 18px;
-    background: #f4efe9; /* Cor de fundo da página do cronograma */
+    background: #f4efe9;
     border: 3px solid var(--primary-color);
     border-radius: 50%;
     transition: transform 0.3s ease, background 0.3s ease;
@@ -557,7 +587,6 @@ header {
     align-items: center;
     gap: 6px;
     z-index: 1001;
-    
     animation: btnVoltarPulse 2.5s infinite ease-in-out;
 }
 
@@ -661,7 +690,7 @@ header {
     background-color: var(--primary-color);
     color: var(--white);
     border: none;
-    padding: 10px 8px;
+    padding: 10px 14px;
     border-radius: 6px;
     font-family: var(--font-text);
     font-weight: 600;
@@ -696,12 +725,11 @@ header {
 }
 
 .rsvp-section {
-    padding: 85px 20px 70px;
+    padding: 85px 16px 70px;
     background-color: #faf9f7;
     display: flex;
     justify-content: center;
 }
-
 
 .rsvp-envelope-card {
     background-color: #fcf9f2; 
@@ -709,15 +737,15 @@ header {
     outline: 1px solid #e0d7c6;
     outline-offset: -8px; 
     border-radius: 12px;
-    padding: 55px 40px 40px;
+    padding: 55px 32px 40px;
     max-width: 650px;
     width: 100%;
     text-align: center;
     position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     margin-top: 40px;
+    box-sizing: border-box;
 }
-
 
 .wax-seal-wrapper {
     position: absolute;
@@ -742,7 +770,6 @@ header {
     position: relative;
     transform: rotate(-3deg);
 }
-
 
 .realistic-wax-seal::before {
     content: '';
@@ -812,7 +839,9 @@ header {
 
 .rsvp-input {
     width: 100%;
-    padding: 14px 18px;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
     border: 1px solid #c9beae;
     border-radius: 6px;
     background-color: var(--white);
@@ -850,10 +879,15 @@ header {
 
 @media (max-width: 768px) {
     .rsvp-title-pen {
-        font-size: 2.2rem !important;
+        font-size: 2rem !important;
     }
     .rsvp-envelope-card {
-        padding: 45px 20px 30px;
+        padding: 45px 18px 28px;
+    }
+    .rsvp-input,
+    .reserva-input {
+        padding: 11px 12px;
+        font-size: 16px;
     }
 }
 
@@ -882,7 +916,7 @@ header {
 
 .btn-whatsapp-comprovante {
     background-color: transparent;
-    color: #25D366; /* Verde WhatsApp */
+    color: #25D366;
     border: 1px solid #25D366;
     padding: 14px;
     width: 100%;
@@ -901,6 +935,7 @@ header {
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(37, 211, 102, 0.2);
 }
+
 /* ===== Presentes na Amazon (reserva via Supabase) ===== */
 .amazon-gifts { margin-top: 50px; }
 .amazon-intro { text-align: center; max-width: 700px; margin: 0 auto 12px; color: var(--text-light); line-height: 1.6; font-size: 0.95rem; }
@@ -924,7 +959,7 @@ header {
 
 .reserva-titulo { font-family: var(--font-title); color: var(--primary-color); font-size: 1.5rem; margin-bottom: 15px; }
 .reserva-texto { font-family: var(--font-text); font-size: 0.95rem; color: var(--text-dark); margin-bottom: 20px; line-height: 1.5; }
-.reserva-input { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 5px; font-family: var(--font-text); font-size: 1rem; }
+.reserva-input { width: 100%; max-width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid #ddd; border-radius: 5px; font-family: var(--font-text); font-size: 1rem; }
 .reserva-erro { color: #b3261e; font-size: 0.85rem; min-height: 1.2em; margin: 8px 0 15px; }
 .reserva-botoes { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 .btn-reserva-primario, .btn-reserva-secundario { padding: 12px 24px; border-radius: 25px; font-weight: 600; cursor: pointer; font-size: 0.85rem; font-family: var(--font-text); }
@@ -934,9 +969,9 @@ header {
 .gift-card--reservado .gift-img { position: relative; }
 
 /* ===== Wizard de confirmação de presença ===== */
-.wizard { text-align: left; max-width: 520px; margin: 0 auto; }
+.wizard { text-align: left; max-width: 520px; width: 100%; margin: 0 auto; box-sizing: border-box; }
 .wizard .rsvp-label { margin-top: 14px; }
-.wizard .rsvp-input { margin-bottom: 4px; }
+.wizard .rsvp-input { margin-bottom: 4px; width: 100%; max-width: 100%; box-sizing: border-box; }
 
 .wiz-progresso { list-style: none; display: flex; justify-content: space-between; gap: 6px; margin: 0 0 28px; padding: 0; counter-reset: none; }
 .wiz-progresso li { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; position: relative; }
