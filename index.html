@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Casamento | Bianca & Bruno</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💍</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -32,13 +33,13 @@
         </nav>
     </header>
 
-    <section id="home" class="hero">
-        <h3 class="save-date-marquee">SAVE THE DATE</h3>
-        
-        <h1>Bianca & Bruno</h1>
-        <p>30 . 01 . 2027</p>
-        <p style="margin-top: 5px; font-size: 0.9rem;">São Caetano do Sul - SP</p>
-    </section>
+<section id="home" class="hero">
+    <h3 class="Convite Oficial">Convite Oficial</h3>
+    
+<h1>Bianca & Bruno</h1>
+<p class="wedding-date" style="font-size: 1.5rem; color: #ffffff; text-shadow: 0 0 10px rgba(255, 255, 255, 0.85), 0 2px 4px rgba(0, 0, 0, 0.5);">30 . 01 . 2027</p>
+<p style="margin-top: 8px; font-size: 1.1rem; color: #ffffff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.75), 0 2px 4px rgba(0, 0, 0, 0.5);">São Caetano do Sul - SP</p>
+</section>
 
     <section class="countdown-section">
         <h2>Contagem Regressiva</h2>
@@ -115,8 +116,6 @@
         
 </section>
 
-    <script src="js/script.js"></script>
-
     <section id="presenca" class="rsvp-section">
         <div class="rsvp-envelope-card">
             
@@ -152,7 +151,7 @@
 
         <div class="gifts-badge-info">
             <span class="badge-title">✦ Como funciona ✦</span>
-            <p>Os presentes são simbólicos. Ao escolher um item, a contribuição é convertida diretamente via PIX para os noivos de forma simples e segura.</p>
+            <p>Você pode nos presentear com experiências e itens simbólicos via PIX, ou escolher presentes físicos da Amazon (comprando direto lá ou enviando o valor equivalente via PIX).</p>
         </div>
     </div>
 
@@ -161,12 +160,11 @@
     <div class="category-group amazon-gifts">
         <h3 class="category-title">Presentes na Amazon</h3>
         <p class="amazon-intro">
-            Prefere dar um presente físico? Escolha um item abaixo e compre direto na Amazon.
-            Depois, clique em <strong>"Já comprei 💝"</strong> para o item sair da lista e ninguém comprar repetido.
+            Escolha como prefere nos presentear: clique em <strong>"Comprar na Amazon"</strong> para pagar no cartão/boleto e entregar direto para nós, ou clique em <strong>"Dar valor via PIX ❖"</strong> para enviar o valor equivalente.
         </p>
         <p class="amazon-intro amazon-dica">
-            💡 Para a entrega ir direto para o nosso endereço, você também pode comprar pela
-            <a id="amazon-lista-link" href="#" target="_blank" rel="noopener noreferrer">nossa lista na Amazon</a>.
+            💡 Você também pode acessar
+            <a id="amazon-lista-link" href="#" target="_blank" rel="noopener noreferrer">nossa lista completa na Amazon</a>.
         </p>
         <div id="amazon-gifts-container" class="gifts-grid">
             <p class="amazon-msg">Carregando presentes...</p>
@@ -187,18 +185,23 @@
             </div>
             
             <button class="btn-checkout" id="btn-checkout" onclick="checkoutPix()" style="display:none;">
-                Copiar PIX para Pagamento
-            </button>
-
-            <button class="btn-whatsapp-comprovante" id="btn-whatsapp" onclick="enviarComprovanteWhatsApp()" style="display:none;">
-                Ou pague em crédito acessando nossa lista de casamento da Amazon!
+                Pagar com PIX (Ver Chave)
             </button>
 
             <div class="pix-box" id="pix-instructions" style="display:none;">
                 <button onclick="voltarParaCarrinho()" class="btn-voltar-pix">← Voltar</button>
-                <p><strong>Quase lá!</strong> Transfira o valor exato para a chave PIX abaixo:</p>
-                <div class="pix-key">44533749844</div>
-                <p style="font-size: 0.85rem; color: #666; margin-top:10px;">Após o pagamento, o presente já é de vocês! Muito obrigado! ❤️</p>
+                <p><strong>Quase lá!</strong> Copie a chave PIX abaixo e transfira o valor exato:</p>
+                <div class="pix-key" id="pix-key-value">44533749844</div>
+                <p id="pix-copiado-aviso" style="font-size: 0.85rem; color: var(--primary-color); font-weight: 600; margin-top: 6px; display: none;">
+                    ✓ Chave PIX copiada para a área de transferência!
+                </p>
+                <p style="font-size: 0.85rem; color: #666; margin-top:10px;">
+                    Após concluir o PIX no seu banco, informe seu nome abaixo para darmos baixa no presente:
+                </p>
+                <input type="text" id="pix-nome-convidado" class="reserva-input" placeholder="Seu nome" maxlength="80" style="margin-top: 10px;">
+                <button onclick="confirmarPagamentoPix()" id="btn-confirmar-pix" class="btn-checkout" style="margin-top: 10px;">
+                    Já fiz o PIX 💝
+                </button>
             </div>
         </div>
     </div>

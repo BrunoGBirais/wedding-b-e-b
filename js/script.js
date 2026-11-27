@@ -48,6 +48,7 @@ const products = [
     { id: 18, name: "Cortinas para a sala", price: 334.64, category: "Itens de Presente Decorações", image:"img/presentes/cortina-janela.jpg", fallbackEmoji: "🏡" },
     { id: 19, name: "Poltrona Verde", price: 518.02, category: "Itens de Presente Decorações", image:"img/presentes/poltrona-verde.jpg", fallbackEmoji: "🛋️" },
     { id: 20, name: "Alexa", price: 178.57, category: "Itens de Presente Decorações", image: "img/presentes/alexa-branca.jpg", fallbackEmoji: "📻" },
+
     // --- Objetos de Casa ---
     { id: 21, name: "Aspirador Robô Philco", price: 2112.01, category: "Itens Objetos de Casa", image:"img/presentes/robo-aspirador.jpg", fallbackEmoji: "🤖" },
     { id: 22, name: "Soundbar JBL Cinema SB160", price: 1765.79, category: "Itens Objetos de Casa", image:"img/presentes/soundbar.jpg",fallbackEmoji: "🔊" },
@@ -105,7 +106,7 @@ function renderProducts() {
         gridDiv.className = "gifts-grid";
 
         const itemsInCategory = products.filter(p => p.category === category);
-itemsInCategory.forEach(product => {
+        itemsInCategory.forEach(product => {
             const priceFmt = product.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
             
             const imgContent = product.image 
@@ -117,7 +118,7 @@ itemsInCategory.forEach(product => {
                     <div class="gift-img" style="display:flex;align-items:center;justify-content:center;font-size:3.5rem; overflow:hidden; position:relative;">${imgContent}</div>
                     <h4>${product.name}</h4>
                     <div class="price">R$ ${priceFmt}</div>
-                    <button class="btn-presentear" onclick="addToCart(${product.id})">Presentear</button>
+                    <button class="btn-presentear" onclick="addToCart(${product.id})">Presentear via PIX</button>
                 </div>
             `;
         });
@@ -129,42 +130,36 @@ itemsInCategory.forEach(product => {
     marcarPixReservados();
 }
 
-// Itens do PIX escolhidos no wizard de presença ficam indisponíveis aqui também.
 let codigosPixReservados = new Set();
 
 async function marcarPixReservados() {
-    if (typeof supabaseFetch !== "function") return;
-    try {
-        const reservados = await supabaseFetch("presentes?select=codigo_pix&tipo=eq.pix&reservado=is.true");
-        codigosPixReservados = new Set(reservados.map(r => r.codigo_pix));
-    } catch (e) {
-        console.error("Erro ao buscar presentes PIX reservados:", e);
-        return;
-    }
-
-    document.querySelectorAll("#gifts-container .gift-card[data-codigo-pix]").forEach(card => {
-        if (!codigosPixReservados.has(Number(card.dataset.codigoPix))) return;
-        card.classList.add("gift-card--reservado");
-        const btn = card.querySelector(".btn-presentear");
-        if (btn) btn.remove();
-        if (!card.querySelector(".selo-reservado")) {
-            const selo = document.createElement("span");
-            selo.className = "selo-reservado";
-            selo.textContent = "Já presenteado 💝";
-            card.querySelector(".gift-img").appendChild(selo);
-        }
-    });
+    // Os itens exclusivamente PIX são estáticos no site e não consultam a tabela Amazon
+    return;
 }
 
-function addToCart(id) {
-    if (codigosPixReservados.has(id)) return;
-    const item = products.find(p => p.id === id);
+function addToCart(itemOrId) {
+    let item;
+
+    if (typeof itemOrId === "object" && itemOrId !== null) {
+        // Veio de um produto da Amazon ("Dar valor via PIX ❖")
+        item = {
+            name: itemOrId.name,
+            price: Number(itemOrId.price),
+            supabaseId: itemOrId.supabaseId ?? null
+        };
+    } else {
+        // Veio da lista original de presentes PIX
+        if (typeof codigosPixReservados !== "undefined" && codigosPixReservados.has(itemOrId)) return;
+        item = products.find(p => p.id === itemOrId);
+    }
+
+    if (!item) return;
+
     cart.push(item);
-    
+
     document.getElementById('popup-texto-item').innerHTML = `<strong>${item.name}</strong> foi adicionado com sucesso ao carrinho dos noivos!`;
-    
     document.getElementById('popup-confirmacao').style.display = 'flex';
-    
+
     updateCartUI();
 }
 
@@ -188,9 +183,11 @@ function updateCartUI() {
     if (btnVoltar) btnVoltar.style.display = 'none';
 
     if (cart.length === 0) {
-        document.getElementById('cart-status-text').innerText = '🛒 Carrinho vazio';
+        document.getElementById('cart-status-text').innerText = 'Carrinho vazio';
         list.innerHTML = '<p style="text-align:center; color:#888;">Seu carrinho está vazio.</p>';
         document.getElementById('cart-total-box').style.display = 'none';
+        document.getElementById('btn-checkout').style.display = 'none';
+        document.getElementById('pix-instructions').style.display = 'none';
         return;
     }
 
@@ -214,7 +211,6 @@ function updateCartUI() {
     document.getElementById('cart-total-value').innerText = total.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
     document.getElementById('cart-total-box').style.display = 'block';
     document.getElementById('btn-checkout').style.display = 'block';
-    document.getElementById('btn-whatsapp').style.display = 'block';
     document.getElementById('pix-instructions').style.display = 'none';
 }
 
@@ -228,29 +224,71 @@ function closeCart() {
 }
 
 function checkoutPix() {
+    const chavePix = typeof CHAVE_PIX_NOIVA !== "undefined" ? CHAVE_PIX_NOIVA : "44533749844";
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(chavePix).catch(() => {});
+    }
+
     document.getElementById('btn-checkout').style.display = 'none';
-    document.getElementById('btn-whatsapp').style.display = 'none';
     document.getElementById('pix-instructions').style.display = 'block';
-    
-    // Mostra o botão de voltar de forma segura
+
+    const avisoCopiado = document.getElementById('pix-copiado-aviso');
+    if (avisoCopiado) avisoCopiado.style.display = 'block';
+
     const btnVoltar = document.querySelector('.btn-voltar-pix');
     if (btnVoltar) btnVoltar.style.display = 'inline-block';
+
+    const nomeInput = document.getElementById('pix-nome-convidado');
+    if (nomeInput) {
+        nomeInput.value = '';
+        nomeInput.focus();
+    }
+}
+
+async function confirmarPagamentoPix() {
+    const nomeInput = document.getElementById("pix-nome-convidado");
+    const nome = nomeInput ? nomeInput.value.trim() : "";
+
+    if (nome.length < 2) {
+        alert("Por favor, informe seu nome para registrar o presente.");
+        if (nomeInput) nomeInput.focus();
+        return;
+    }
+
+    const itensAmazon = cart.filter(item => item.supabaseId !== null && item.supabaseId !== undefined);
+    if (itensAmazon.length > 0 && typeof supabaseFetch === "function") {
+        for (const item of itensAmazon) {
+            try {
+                await supabaseFetch("rpc/reservar_presente", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        p_id: item.supabaseId,
+                        p_nome: `${nome} (PIX)`
+                    })
+                });
+            } catch (e) {
+                console.error("Erro ao dar baixa no item via PIX:", e);
+            }
+        }
+        if (typeof carregarPresentesAmazon === "function") {
+            await carregarPresentesAmazon();
+        }
+    }
+
+    cart = [];
+    updateCartUI();
+    closeCart();
+    alert(`Muito obrigado, ${nome}! Seu presente via PIX foi registrado com sucesso.`);
 }
 
 function voltarParaCarrinho() {
     document.getElementById('pix-instructions').style.display = 'none';
-    
-    // Esconde o botão de voltar de forma segura sem causar erro
+
     const btnVoltar = document.querySelector('.btn-voltar-pix');
     if (btnVoltar) btnVoltar.style.display = 'none';
-    
-    // Como não há mais erros acima, o código chega aqui e mostra os botões!
-    document.getElementById('btn-checkout').style.display = 'block';
-    document.getElementById('btn-whatsapp').style.display = 'block';
-}
 
-function enviarComprovanteWhatsApp() {
-    window.open("https://www.amazon.com.br/hz/wishlist/ls/22PKCUWC4NWXW?ref_=wl_share", "_blank");
+    document.getElementById('btn-checkout').style.display = 'block';
 }
 
 function confirmarPresenca() {
@@ -258,7 +296,6 @@ function confirmarPresenca() {
     
     if(nome) {
         const urlGoogleForms = "https://forms.gle/dEP5bN9yjrHWaKZt9";
-        
         window.open(urlGoogleForms, '_blank');
     } else {
         document.getElementById('popup-rsvp-alerta').style.display = 'flex';

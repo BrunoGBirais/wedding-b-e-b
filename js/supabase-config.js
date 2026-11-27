@@ -1,7 +1,7 @@
 // Configuração compartilhada do Supabase.
 // A chave publicável é pública por design; a segurança está nas regras do banco (RLS + funções).
-const SUPABASE_URL = "https://kbicepfblkizuudboknz.supabase.co";
-const SUPABASE_KEY = "sb_publishable_pET_61Yx1MI2IMub91htyA_8kLGW2Sa";
+const SUPABASE_URL = "https://kclmutqvluvbvpbbjzsj.supabase.co";
+const SUPABASE_KEY = "sb_publishable_gpc1yaw3dzj8l3lRjszJTg_OMMhvWiE";
 const CHAVE_PIX_NOIVA = "44533749844";
 
 async function supabaseFetch(path, options = {}) {
@@ -28,6 +28,6 @@ function escapeHtml(texto) {
 
 function formatarPreco(valor) {
     return valor != null
-        ? "R$ " + Number(valor).toLocaleString("pt-BR", { minimumFractionDigits: 2 })
+        ? "Aprox. R$ " + Number(valor).toLocaleString("pt-BR", { minimumFractionDigits: 2 })
         : "Ver preço na Amazon";
 }

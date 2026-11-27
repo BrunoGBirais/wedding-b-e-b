@@ -11,7 +11,7 @@ async function carregarPresentesAmazon() {
 
     try {
         presentesAmazon = await supabaseFetch(
-            "presentes?select=id,nome,preco,link_amazon,imagem,reservado&tipo=eq.amazon&order=reservado.asc,id.asc"
+            "presentes?select=id,nome,preco,link_amazon,imagem,reservado&order=reservado.asc,id.asc"
         );
         renderPresentesAmazon();
     } catch (e) {
@@ -75,12 +75,20 @@ function renderPresentesAmazon() {
             linkAmazon.rel = "noopener noreferrer";
             linkAmazon.textContent = "Comprar na Amazon";
 
-            const btnComprei = document.createElement("button");
-            btnComprei.className = "btn-presentear";
-            btnComprei.textContent = "Já comprei 💝";
-            btnComprei.onclick = () => abrirReserva(p.id);
+            acoes.appendChild(linkAmazon);
 
-            acoes.append(linkAmazon, btnComprei);
+            if (p.preco !== null && p.preco > 0 && typeof addToCart === "function") {
+                const btnPix = document.createElement("button");
+                btnPix.className = "btn-presentear";
+                btnPix.textContent = "Dar valor via PIX ❖";
+                btnPix.onclick = () => addToCart({
+                    name: p.nome,
+                    price: Number(p.preco),
+                    supabaseId: p.id
+                });
+                acoes.appendChild(btnPix);
+            }
+
             card.appendChild(acoes);
         }
 
