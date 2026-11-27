@@ -5,6 +5,7 @@ const PASSOS = ["Seus dados", "Presente", "Confirmação"];
 const wiz = {
     passo: 1,
     titular: { nome: "", rg: "" },
+    mensagem: "",
     consentimento: false,
     acompanhantes: [],
     rascunhoAc: { nome: "", rg: "" },
@@ -106,6 +107,8 @@ function renderPasso1() {
         <label class="rsvp-label" for="wiz-rg">Seu RG</label>
         <input id="wiz-rg" class="rsvp-input" type="text" maxlength="20" inputmode="text" value="${escapeHtml(wiz.titular.rg)}" placeholder="Ex.: 12.345.678-9">
         ${areaAcompanhante}
+        <label class="rsvp-label" for="wiz-mensagem" style="margin-top: 14px;">Deixe um recado para os noivos (opcional)</label>
+        <textarea id="wiz-mensagem" class="rsvp-input" rows="3" maxlength="500" style="resize: vertical; min-height: 76px;" placeholder="Escreva uma mensagem carinhosa ou observação para Bianca e Bruno...">${escapeHtml(wiz.mensagem)}</textarea>
         <label class="wiz-consentimento">
             <input type="checkbox" id="wiz-consent" ${wiz.consentimento ? "checked" : ""}>
             <span>Autorizo o uso do meu nome e RG, e dos meus acompanhantes, apenas para a lista de acesso do casamento.</span>
@@ -265,6 +268,7 @@ function lerPasso1() {
     wiz.titular.nome = nome.value.trim();
     wiz.titular.rg = document.getElementById("wiz-rg").value.trim();
     wiz.consentimento = document.getElementById("wiz-consent").checked;
+    wiz.mensagem = (document.getElementById("wiz-mensagem")?.value || "").trim();
 
     const acNome = document.getElementById("wiz-ac-nome");
     const acRg = document.getElementById("wiz-ac-rg");
@@ -439,7 +443,8 @@ async function wizConfirmar() {
                 p_presente_id: amazonConfirmado ? wiz.presente.dbId : null,
                 p_consentimento: wiz.consentimento,
                 p_pix_nome: pixConfirmado ? wiz.presente.nome : null,
-                p_pix_valor: valorPixParaBanco
+                p_pix_valor: valorPixParaBanco,
+                p_mensagem: wiz.mensagem.trim() || null
             })
         });
     } catch (e) {
