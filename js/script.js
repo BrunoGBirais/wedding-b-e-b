@@ -26,7 +26,7 @@ const products = [
     // --- PIX Livre ---
     {
         id: 0,
-        name: "Pix para os noivos",
+        name: "PIX para os noivos",
         price: null,
         isFreePix: true,
         category: "Itens de Presentes na Lua de Mel",
@@ -44,7 +44,7 @@ const products = [
     { id: 8, name: "One Piece: em busca do tesouro do casal", price: 554.94, category: "Itens de Presentes na Lua de Mel", image: "img/presentes/onepiece.jpg", fallbackEmoji: "🏴‍☠️" },
     { id: 9, name: "Trilha guiada com vista épica na lua de mel", price: 274.50, category: "Itens de Presentes na Lua de Mel", image: "img/presentes/trilha.webp", fallbackEmoji: "🥾" },
     { id: 10, name: "Piquenique ao pôr do sol em um mirante especial", price: 196.40, category: "Itens de Presentes na Lua de Mel", image: "img/presentes/piquenique.webp", fallbackEmoji: "🧺" },
-    { id: 11, name: "Aluguel de carro para viagem", price: 312.40, category: "Itens de Presentes na Lua de Mel", image: "img/presentes/carro.avif", fallbackEmoji: "🚗" },
+    { id: 11, name: "Aluguel de carro para explorar praias e mirantes", price: 312.40, category: "Itens de Presentes na Lua de Mel", image: "img/presentes/carro.avif", fallbackEmoji: "🚗" },
     { id: 12, name: "Degustação de vinhos e queijos lua de mel", price: 164.90, category: "Itens de Presentes na Lua de Mel", image: "img/presentes/vinhos.jpg", fallbackEmoji: "🧀" }
 ];
 
@@ -234,13 +234,6 @@ async function confirmarPagamentoPix() {
         if (nomeInput) nomeInput.focus();
         return;
     }
-
-// Não dá baixa no Supabase: presentes via PIX não reservam/bloqueiam o item na vitrine
-    cart = [];
-    updateCartUI();
-    closeCart();
-    alert(`Muito obrigado, ${nome}! Seu presente via PIX foi registrado com sucesso.`);
-}    
 
     const itensAmazon = cart.filter(item => item.supabaseId !== null && item.supabaseId !== undefined);
     if (itensAmazon.length > 0 && typeof supabaseFetch === "function") {
