@@ -166,7 +166,7 @@
 </head>
 <body>
 
-    <nav>
+<nav>
         <a href="index.html" class="btn-voltar">← Voltar para o Site</a>
     </nav>
 
@@ -175,69 +175,150 @@
         <p>Como os nossos caminhos se cruzaram</p>
     </header>
 
-    <div class="album-grid">
-        
-        <div class="album-card">
-            <div class="album-photo">
-                <img src="img/presentes/karaoke.png" alt="O Encontro">
+    <!-- PARTE 1: Duas fotos novas lado a lado + Toda a história reunida -->
+    <section class="historia-destaque">
+        <div class="historia-fotos-dupla">
+            <div class="historia-foto-box">
+                <img src="img/bia-bru-scotland.jpeg" alt="Bianca e Bruno em frente ao castelo na Escócia">
             </div>
-            <div class="album-caption">
-                <strong>O Encontro</strong>
-                Tudo começou em uma fila de karaokê na Tokyo, em São Paulo. Apresentados por um amigo em comum, a conexão foi instantânea.
-            </div>
-        </div>
-
-        <div class="album-card">
-            <div class="album-photo">
-                <img src="img/presentes/1.jpeg" alt="Inseparáveis">
-            </div>
-            <div class="album-caption">
-                <strong>Inseparáveis</strong>
-                Desde aquela noite, nunca mais nos separamos. Passamos a compartilhar a vida, os sorrisos e a construir um amor para a vida inteira.
+            <div class="historia-foto-box">
+                <img src="img/eu-bruno.jpeg" alt="Selfie de Bianca e Bruno na viagem">
             </div>
         </div>
 
-        <div class="album-card">
-            <div class="album-photo">
-                <img src="img/presentes/9.jpeg" alt="A Viagem">
+        <div class="historia-texto-completo">
+            <p>
+                Tudo começou em uma fila de karaokê na Tokyo, em São Paulo. Apresentados por um amigo em comum, a conexão foi instantânea. Desde aquela noite, nunca mais nos separamos — passamos a compartilhar a vida, os sorrisos e a construir um amor para a vida inteira.
+            </p>
+            <p>
+                Veio então a primeira grande viagem a dois! Desbravamos as paisagens da Suíça, os cenários indescritíveis da Escócia e as ruas históricas de Londres. Ali, naquelas montanhas deslumbrantes que nos fizeram sentir dentro da série <em>Outlander</em>, o momento mais marcante de todos estava prestes a acontecer: o Bruno se ajoelhou ao lado da mágica Ilha de Skye e fez o pedido pelas famosas Highlands.
+            </p>
+            <p>
+                Agora, com a bênção de Deus, selaremos a união de nossas vidas na Igreja Católica. O início do nosso tão esperado "felizes para sempre"!
+            </p>
+        </div>
+    </section>
+
+    <!-- PARTE 2: Seção separada apenas com as fotos -->
+    <section class="galeria-separada">
+        <h2 class="galeria-titulo">Nossos Momentos</h2>
+        <div class="album-grid">
+            <div class="album-card">
+                <div class="album-photo">
+                    <img src="img/vista-bia-bruno.jpeg" alt="O Encontro">
+                </div>
             </div>
-            <div class="album-caption">
-                <strong>Pelo Mundo</strong>
-                A primeira grande viagem a dois! Desbravamos as paisagens da Suíça, os cenários indescritíveis da Escócia e as ruas históricas de Londres.
+
+            <div class="album-card">
+                <div class="album-photo">
+                    <img src="img/presentes/1.jpeg" alt="Inseparáveis">
+                </div>
+            </div>
+
+            <div class="album-card">
+                <div class="album-photo">
+                    <img src="img/presentes/9.jpeg" alt="Pelo Mundo">
+                </div>
+            </div>
+
+            <div class="album-card">
+                <div class="album-photo">
+                    <img src="img/fotos-fotografo-bru-bia/10.jpeg" alt="Viagens">
+                </div>
+            </div>
+
+            <div class="album-card">
+                <div class="album-photo">
+                    <img src="img/presentes/4.jpeg" alt="O Pedido">
+                </div>
+            </div>
+
+            <div class="album-card">
+                <div class="album-photo">
+                    <img src="img/presentes/5.jpeg" alt="Para Sempre">
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="album-card">
-            <div class="album-photo">
-                <img src="img/foto-alianca.jpg" alt="Outlander Vibes">
-            </div>
-            <div class="album-caption">
-                <strong>Magia na Escócia</strong>
-                Ali, naquelas montanhas deslumbrantes que nos fizeram sentir dentro da série Outlander, o momento mais marcante de todos estava prestes a acontecer.
-            </div>
-        </div>
+<style>
+    .historia-destaque {
+        max-width: 900px !important;
+        margin: 0 auto 50px !important;
+        padding: 0 20px !important;
+    }
 
-        <div class="album-card">
-            <div class="album-photo">
-                <img src="img/presentes/4.jpeg" alt="O Pedido">
-            </div>
-            <div class="album-caption">
-                <strong>O Pedido</strong>
-                O Bruno se ajoelhou ao lado da mágica Ilha de Skye e fez O pedido. Um "sim" que ecoou pelas montanhas escocesas.
-            </div>
-        </div>
+    .historia-fotos-dupla {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        align-items: stretch !important;
+        gap: 16px !important;
+        width: 100% !important;
+        margin-bottom: 28px !important;
+    }
 
-        <div class="album-card">
-            <div class="album-photo">
-                <img src="img/presentes/5.jpeg" alt="O Grande Sim">
-            </div>
-            <div class="album-caption">
-                <strong>Para Sempre</strong>
-                Com a bênção de Deus, selaremos a união de nossas vidas na Igreja Católica. O início do nosso tão esperado "felizes para sempre"!
-            </div>
-        </div>
+    .historia-foto-box {
+        flex: 1 1 50% !important;
+        width: 50% !important;
+        max-width: 50% !important;
+        height: 360px !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08) !important;
+        border: 4px solid #fffcf7 !important;
+    }
 
-    </div>
+    .historia-foto-box img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        display: block !important;
+    }
+
+    .historia-foto-box:last-child img {
+        object-position: center 20% !important;
+    }
+
+    .historia-texto-completo {
+        background-color: #fffcf7 !important;
+        border: 1px solid #eae5df !important;
+        border-radius: 12px !important;
+        padding: 32px !important;
+        text-align: center !important;
+        line-height: 1.8 !important;
+    }
+
+    .historia-texto-completo p {
+        margin-bottom: 16px !important;
+    }
+
+    .historia-texto-completo p:last-child {
+        margin-bottom: 0 !important;
+    }
+
+    .galeria-separada {
+        max-width: 1000px !important;
+        margin: 0 auto 60px !important;
+        padding: 40px 20px 0 !important;
+        border-top: 1px solid #e0d7c6 !important;
+    }
+
+    .galeria-titulo {
+        text-align: center !important;
+        margin-bottom: 28px !important;
+    }
+
+    @media (max-width: 600px) {
+        .historia-fotos-dupla {
+            gap: 8px !important;
+        }
+        .historia-foto-box {
+            height: 220px !important;
+            border-width: 2px !important;
+        }
+    }
+</style>    
 
 </body>
 </html>
